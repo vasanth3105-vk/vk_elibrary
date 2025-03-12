@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>My Library - eLibrary</title>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            background: linear-gradient(to top, rgba(0,0,0,0.5)50%,rgba(0,0,0,0.5)50%), url("/static/bg.jpg");
+            background-position: center;
+            background-size: cover;
+            color: white;
+        }
+        .navbar {
+            width: 100%;
+            height: 75px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 40px;
+        }
+        .logo {
+            font-size: 30px;
+            color: white;
+            font-weight: bold;
+        }
+        .menu {
+            display: flex;
+            align-items: center;
+        }
+        .menu ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        .menu ul li a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            transition: 0.4s ease-in-out;
+        }
+        .menu ul li a:hover {
+            border-bottom: 2px solid blue;
+        }
+        .profile-container {
+            display: flex;
+            align-items: center;
+            margin-left: 20px;
+        }
+        .profile-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 60px;
+            right: 40px;
+            background: #333;
+            border-radius: 10px;
+            width: 160px;
+            text-align: center;
+            z-index: 1000;
+        }
+        .dropdown-menu a {
+            display: block;
+            padding: 12px;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .dropdown-menu a:hover {
+            background: #ff7200;
+            color: white;
+            border-radius: 10px;
+        }
+        .container {
+            max-width: 700px;
+            margin: 100px auto;
+            background: rgba(0, 0, 0, 0.85);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+        h1 {
+            font-size: 35px;
+            margin-bottom: 15px;
+            color: #ff7200;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            font-size: 16px;
+            margin-bottom: 15px;
+            resize: none;
+        }
+        .cover-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: white;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            color: black;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .cover-image input {
+            display: none;
+        }
+        .file-upload {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #ff7200;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            color: white;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .file-upload input {
+            display: none;
+        }
+        .btn-upload {
+            background: #ff7200;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .btn-upload:hover {
+            background: #e65c00;
+        }
+        .books-section {
+            margin-top: 40px;
+            text-align: center;
+        }
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            justify-content: center;
+        }
+        .book-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px;
+            border-radius: 10px;
+            text-align: center;
+            position: relative;
+        }
+        .book-card img {
+            width: 100px;
+            height: 150px;
+            border-radius: 5px;
+        }
+        .book-card div {
+            margin-top: 5px;
+            color: white;
+            font-size: 14px;
+        }
+        .book-actions {
+            margin-top: 10px;
+        }
+        .book-actions button {
+            background: #ff7200;
+            border: none;
+            color: white;
+            padding: 5px 10px;
+            font-size: 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 2px;
+        }
+        .book-actions button:hover {
+            background: #e65c00;
+        }
+        .footer {
+            margin-top: 40px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.9);
+            text-align: center;
+            font-size: 14px;
+            color: #bbb;
+        }
+        select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            font-size: 16px;
+            background: white;
+            color: black;
+            cursor: pointer;
+            margin-bottom: 15px;
+            appearance: none; /* Removes default dropdown arrow */
+            position: relative;
+        }
+        
+        /* Style for dropdown container */
+        select:focus {
+            outline: none;
+            border: 2px solid #ff7200;
+        }
+        
+        /* Dropdown menu styling */
+        select option {
+            background: white;
+            color: black;
+            padding: 10px;
+            font-size: 16px;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <h2 class="logo">eLibrary</h2>
+        <div class="menu">
+            <ul>
+                <li><a href="/home">HOME</a></li>
+                <li><a href="/category">CATEGORY</a></li>
+                <li><a href="/about">ABOUT</a></li>
+                <li><a href="/feedback">FEEDBACK</a></li>
+                <li><a href="/contact">CONTACT</a></li>
+            </ul>
+            <div class="profile-container">
+                <img src="/static/user.png" alt="Profile" class="profile-icon" onclick="toggleDropdown()">
+                <div class="dropdown-menu" id="dropdownMenu">
+                    <a href="#">My Library</a>
+                    <a href="/recent">Recent View</a>
+                    <a href="/logout">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1>Upload Book</h1>
+        <input type="text" id="title" placeholder="Book Title">
+        <input type="text" id="author" placeholder="Author">
+        <textarea id="description" rows="3" placeholder="Book Description"></textarea>
+        <!-- Category Dropdown -->
+        <select id="category">
+            <option value="History">History</option>
+            <option value="Science">Science</option>
+            <option value="Mystery">Mystery</option>
+            <option value="Biography">Biography</option>
+            <option value="Technology">Technology</option>
+            <option value="Education">Education</option>
+            <option value="Fiction">Fiction</option>
+            <option value="selfimprove">Self improvement</option>
+            <option value="Health">Health</option>
+        </select>
+
+        <label class="cover-image">
+            Choose Book Cover
+            <input type="file" id="coverImage" accept="image/*">
+        </label>
+        <label class="file-upload">
+            Choose Book File
+            <input type="file" id="bookFile" accept=".pdf,.epub">
+        </label>
+        <button class="btn-upload" onclick="uploadBook()">Upload Book</button>
+
+        <div class="books-section">
+            <h2>Recently Uploaded Books</h2>
+            <div class="books-grid" id="bookList"></div>
+        </div>
+    </div>
+    <div class="footer">
+        <p>&copy; 2025 eLibrary. All rights reserved.</p>
+    </div>
+
+    <script>
+        function uploadBook() {
+            let title = document.getElementById("title").value;
+            let author = document.getElementById("author").value;
+            let description = document.getElementById("description").value;
+            let category = document.getElementById("category").value;
+            let coverInput = document.getElementById("coverImage");
+            let bookInput = document.getElementById("bookFile");
+
+            if (!title || !author || !description || !category || coverInput.files.length === 0 || bookInput.files.length === 0 ){
+                return alert("Please fill out all fields and upload a cover image choose file.");
+            }
+
+            let coverFile = coverInput.files[0];
+            let coverURL = URL.createObjectURL(coverFile);
+            let bookURL = URL.createObjectURL(bookInput.files[0]);
+
+            let bookList = document.getElementById("bookList");
+            let bookEntry = `
+                <div class="book-card">
+                    <img src="${coverURL}" alt="Book Cover">
+                    <div><strong>${title}</strong><br> ${author}<br>${description}<strong>Category:</strong> ${category}</div> 
+                </div>
+            `;
+            bookList.innerHTML += bookEntry;
+
+            document.getElementById("title").value = "";
+            document.getElementById("author").value = "";
+            document.getElementById("description").value = "";
+            document.getElementById("category").value = "";
+            document.getElementById("coverImage").value = "";
+            document.getElementById("bookFile").value = "";
+        }
+    </script>
+</body>
+</html>

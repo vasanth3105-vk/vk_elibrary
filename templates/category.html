@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Categories - eLibrary</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            background: linear-gradient(to top, rgba(0,0,0,0.5)50%,rgba(0,0,0,0.5)50%), url("/static/bg.jpg");
+            background-position: center;
+            background-size: cover;
+            color: white;
+            text-align: center;
+        }
+        .navbar {
+            width: 100%;
+            height: 75px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 40px;
+            
+        }
+        .logo {
+            color: white;
+            font-size: 35px;
+            font-weight: bold;
+        }
+        .nav-container {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+        .menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        .menu li a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .menu li a:hover {
+            border-bottom: 2px solid blue;
+        }
+        .profile-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        .profile-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 50px;
+            right: 0;
+            background: #333;
+            border-radius: 10px;
+            width: 160px;
+            text-align: center;
+            z-index: 1000;
+        }
+        .dropdown-menu a {
+            display: block;
+            padding: 12px;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .dropdown-menu a:hover {
+            background: #ff7200;
+            color: white;
+            border-radius: 10px;
+        }
+        .show {
+            display: block;
+        }
+        .category-section {
+            margin-top: 100px;
+            padding-bottom: 50px;
+        }
+        .category-section h1 {
+            margin-bottom: 10px;
+        }
+        .category-section p {
+            margin-bottom: 30px;
+            font-size: 16px;
+            opacity: 0.8;
+        }
+        .category-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .category {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            text-align: center;
+            transition: 0.3s;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            height: 70px; /* Adjust the height as needed */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .category img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-radius: 10px;
+        }
+        
+        .category h3 {
+            position: relative;
+            z-index: 2;
+            color: black;
+            font-size: 20px;
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+        
+        .category:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        .footer {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px 0;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .footer .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 10px;
+        }
+        .footer a {
+            text-decoration: none;
+            color: white;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+        .footer a:hover {
+            color: #ff7200;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <h2 class="logo">eLibrary</h2>
+        <div class="nav-container">
+            <ul class="menu">
+                <li><a href="/home">HOME</a></li>
+                <li><a href="#">CATEGORY</a></li>
+                <li><a href="/about">ABOUT</a></li>
+                <li><a href="/feedback">FEEDBACK</a></li>
+                <li><a href="/contact">CONTACT</a></li>
+            </ul>
+            <div class="profile-container">
+                <img src="/static/user.png" alt="Profile" class="profile-icon" onclick="toggleDropdown()">
+                <div class="dropdown-menu" id="dropdownMenu">
+                    <a href="/mylibrary">My Library</a>
+                    <a href="/recent">Recent View</a>
+                    <a href="/logout">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="category-section">
+        <h1>Explore Categories</h1>
+        <p>Find books across different genres and expand your knowledge.</p>
+        <div class="category-container">
+            <div class="category" onclick="window.location.href='/category/history'">
+                <img src="/static/history.jpg" alt="History">
+                <h3>History</h3>
+            </div>
+            <div class="category" onclick="window.location.href='/category/science'">
+                <img src="/static/science.jpg" alt="Science">
+                <h3>Science</h3>
+            </div>
+            <div class="category" onclick="window.location.href='/category/mystery'">
+                <img src="/static/mystery.jpg" alt="Mystery">
+                <h3>Mystery</h3>
+            </div>
+            <div class="category" onclick="window.location.href='/category/biography'">
+                <img src="/static/biography.jpg" alt="Biography">
+                <h3>Biography</h3>
+            </div>
+            <div class="category" onclick="window.location.href='/category/technology'">
+                <img src="/static/technology.jpg" alt="Technology">
+                <h3>Technology</h3>
+            </div>
+            <div class="category" onclick="window.location.href='/category/education'">
+                <img src="/static/education.jpg" alt="Education">
+                <h3>Education</h3>
+            </div>
+            <div class="category" onclick="window.location.href='/category/fiction'">
+                <img src="/static/fiction.jpg" alt="Fiction">
+                <h3>Fiction</h3>
+            </div>
+            <div class="category" onclick="window.location.href='/category/selfimprove'">
+                <img src="/static/selfimprove.jpg" alt="selfimprove">
+                <h3>Self improvement</h3>
+            </div>
+            <div class="category" onclick="window.location.href='/category/health'">
+                <img src="/static/health.jpg" alt="Health">
+                <h3>Health</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="footer-links">
+            <a href="/">Home</a>
+            <a href="/about">About</a>
+            <a href="/category">Categories</a>
+            <a href="/contact">Contact</a>
+            <a href="/feedback">Feedback</a>
+        </div>
+        <p>&copy; 2025 eLibrary. All rights reserved.</p>
+    </div>
+
+    <script>
+        function toggleDropdown() {
+            document.getElementById("dropdownMenu").classList.toggle("show");
+        }
+        window.onclick = function(event) {
+            if (!event.target.matches('.profile-icon')) {
+                var dropdowns = document.getElementsByClassName("dropdown-menu");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>

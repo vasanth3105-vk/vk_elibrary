@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Webpage Design</title>
+
+<style>
+    *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.main{
+    width: 100%;
+    background: linear-gradient(to top, rgba(0,0,0,0.5)50%,rgba(0,0,0,0.5)50%), url("/static/bg.jpg");
+    background-position: center;
+    background-size: cover;
+    height: 100vh;
+}
+
+.navbar{
+    width: 1200px;
+    height: 75px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.icon{
+    display: flex;
+    align-items: center;
+}
+
+.logo{
+    color: white;
+    font-size: 35px;
+    font-family: Arial;
+    padding-right: 20px;
+    padding-top: 10px;
+}
+
+.menu{
+    display: flex;
+    align-items: center;
+}
+
+ul{
+    display: flex;
+    list-style: none;
+}
+
+ul li{
+    margin-left: 40px;
+    font-size: 14px;
+}
+
+ul li a{
+    text-decoration: none;
+    color: #fff;
+    font-family: Arial;
+    font-weight: bold;
+    transition: 0.4s ease-in-out;
+}
+
+ul li a:hover{
+    border-bottom: 2px solid blue;
+}
+
+.search{
+    display: flex;
+    align-items: center;
+    border: 2px solid white;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.srch{
+    font-family: 'Times New Roman';
+    width: 200px;
+    height: 40px;
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 16px;
+    padding: 10px;
+}
+
+.btn{
+    width: 100px;
+    height: 40px;
+    background: #ff7200;
+    border: none;
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.btn:hover{
+    background: white;
+    color: #000;
+}
+
+.profile-container {
+    position: relative;
+    display: inline-block;
+    margin-left: 60px;
+}
+
+.profile-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    background: #333;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+    width: 160px;
+    text-align: center;
+    z-index: 1000;
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 12px;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.dropdown-menu a:hover {
+    background: #ff7200;
+    color: white;
+    border-radius: 10px;
+}
+
+.show {
+    display: block;
+}
+
+.content{
+    width: 1200px;
+    margin: auto;
+    color: #fff;
+    position: relative;
+}
+
+.content h1{
+    font-family: 'Times New Roman';
+    font-size: 50px;
+    padding-left: 20px;
+    margin-top: 9%;
+    letter-spacing: 2px;
+}
+
+.content .par{
+    padding-left: 20px;
+    font-family: Arial;
+    letter-spacing: 1.2px;
+    line-height: 30px;
+}
+.all-books {
+    width: 80%;
+    margin: 40px auto;
+    text-align: center;
+    color: white;
+}
+
+.book-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.book-card {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    border-radius: 10px;
+    width: 200px;
+    text-align: center;
+}
+
+.book-cover {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.book-actions .btn {
+    display: block;
+    margin: 5px 0;
+    padding: 8px;
+    background: #ff7200;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.btn.delete {
+    background: red;
+}
+</style>    
+</head>
+<body>
+    <div class="main">
+        <div class="navbar">
+            <div class="icon">
+                <h2 class="logo">Elibrary</h2>
+            </div>
+            <div class="search">
+                <input class="srch" type="search" name="" placeholder="Type To Search">
+                <button class="btn">Search</button>
+            </div>
+            <div class="menu">
+                <ul>
+                    <li><a href="#">HOME</a></li>
+                    <li><a href="category">CATEGORY</a></li>
+                    <li><a href="/about">ABOUT</a></li>
+                    <li><a href="/feedback">FEEDBACK</a></li>
+                    <li><a href="/contact">CONTACT</a></li>
+                </ul>
+                <div class="profile-container">
+                    <img src="/static/user.png" alt="Profile" class="profile-icon" onclick="toggleDropdown()">
+                    <div class="dropdown-menu" id="dropdownMenu">
+                        <a href="/mylibrary">My Library</a>
+                        <a href="/recent">Recent View</a>
+                        <a href="/logout" class="logout">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content">
+            <h1>Digital books & <br><span>Resources</span> <br>Course</h1>
+            <p class="par">Books serve to show a man that those original thoughts of his aren't very new after all.<br>
+            Show me a family of readers, and I will show you the people who move the world.</p>
+        </div>
+    </div>
+    <br>
+    <div class="all-books">
+        <h2>All Books</h2>
+        <div class="book-grid">
+            {% for book in books %}
+            <div class="book-card">
+                <img src="{{ book.cover_image }}" alt="Book Cover" class="book-cover">
+                <h3>{{ book.title }}</h3>
+                <p>by {{ book.author }}</p>
+                <div class="book-actions">
+                    <a href="{{ url_for('download_book', book_id=book.id) }}" class="btn">Download</a>
+                    <a href="{{ url_for('edit_book', book_id=book.id) }}" class="btn">Edit</a>
+                    <a href="{{ url_for('delete_book', book_id=book.id) }}" class="btn delete">Delete</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    
+
+    <script>
+        function toggleDropdown() {
+            document.getElementById("dropdownMenu").classList.toggle("show");
+        }
+
+        window.onclick = function(event) {
+            if (!event.target.matches('.profile-icon')) {
+                var dropdowns = document.getElementsByClassName("dropdown-menu");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>

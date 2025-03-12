@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Login | eLibrary</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            box-sizing: border-box;
+        }
+        body {
+            background: linear-gradient(to right, #1a1a2e, #16213e);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+        .background-animation {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+        .background-animation::before {
+            content: "";
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 75, 43, 0.15) 10%, transparent 70%);
+            animation: animateBackground 10s infinite linear;
+        }
+        @keyframes animateBackground {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+        .login-box {
+            background: #0f3460;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            width: 350px;
+            animation: fadeIn 1s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        .login-box h2 {
+            margin-bottom: 20px;
+            color: #fff;
+            font-size: 24px;
+        }
+        .input-box {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+            background: #1b1b3a;
+            color: white;
+        }
+        .login-btn {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(to right, #ff416c, #ff4b2b);
+            border: none;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: transform 0.3s, background 0.3s;
+        }
+        .login-btn:hover {
+            background: linear-gradient(to right, #ff4b2b, #ff416c);
+            transform: scale(1.05);
+        }
+        .google-btn {
+            margin-top: 10px;
+            background: linear-gradient(to right, #4285F4, #34A853);
+        }
+        .forgot-password {
+            margin-top: 15px;
+        }
+        .forgot-password a {
+            text-decoration: none;
+            color: #ff416c;
+            font-size: 14px;
+        }
+        .forgot-password a:hover {
+            text-decoration: underline;
+        }
+        .register-link {
+            margin-top: 15px;
+            font-size: 14px;
+        }
+        .register-link a {
+            color: #ff416c;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .register-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="background-animation"></div>
+    <div class="login-box">
+        <h2>Login to eLibrary</h2>
+        <form action="/login" method="POST">
+            <input class="input-box" type="email" name="email" placeholder="Email" required>
+            <input class="input-box" type="password" name="password" placeholder="Password" required>
+            <button class="login-btn" type="submit">Login</button>
+        </form>
+        <p class="forgot-password"><a href="/forgot-password">Forgot Password?</a></p>
+        <button class="login-btn google-btn" onclick="window.location.href='/google-login'">Login with Google</button>
+        <p class="register-link">Don't have an account? <a href="/register">Register here</a></p>
+    </div>
+</body>
+</html>
